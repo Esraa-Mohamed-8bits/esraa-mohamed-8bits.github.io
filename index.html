@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esraa Mohamed — AI &amp; MLOps Engineer</title>
+<meta name="description" content="Esraa Mohamed — AI/ML engineer building agentic systems, applied ML, and backend AI services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1115;
+    --panel:#161920;
+    --panel-2:#1C2029;
+    --line:#2B303B;
+    --text:#E9E6DE;
+    --text-dim:#9BA1AC;
+    --accent:#CE9B4C;
+    --accent-soft:#CE9B4C33;
+    --accent2:#5FA39A;
+    --radius:3px;
+    --maxw:880px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent2); outline-offset:3px;}
+  code, .mono{font-family:'IBM Plex Mono',monospace;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:40;
+    background:rgba(15,17,21,.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:'Space Grotesk'; font-weight:700; font-size:1.05rem; color:var(--text);}
+  .logo span{color:var(--accent);}
+  .navlinks{display:flex; gap:22px; font-size:.92rem;}
+  .navlinks a{color:var(--text-dim);}
+  .navlinks a:hover{color:var(--text); text-decoration:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:76px 0 60px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:40px; align-items:center;}
+  @media (max-width:760px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow{color:var(--accent2); font-size:.85rem; margin-bottom:14px;}
+  h1.name{font-size:clamp(2.1rem,5vw,3rem); line-height:1.08;}
+  .role{color:var(--text-dim); font-size:1.15rem; margin-top:10px;}
+  .lede{margin-top:20px; color:var(--text); max-width:52ch; font-size:1.02rem;}
+  .cta-row{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:var(--radius);
+    border:1px solid var(--line); font-size:.92rem; color:var(--text);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{border-color:var(--accent); background:var(--panel); text-decoration:none;}
+  .btn.primary{background:var(--accent); color:#161006; border-color:var(--accent); font-weight:600;}
+  .btn.primary:hover{background:#e0ac5b;}
+
+  /* hero graph */
+  .graph-box{border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:22px;}
+  .graph-box svg{width:100%; height:auto; display:block;}
+  .node-label{font-family:'IBM Plex Mono'; font-size:11px; fill:var(--text-dim);}
+  .node-label.active{fill:var(--accent);}
+  .node-circle{fill:var(--panel-2); stroke:var(--line); stroke-width:1.4;}
+  .node-circle.active{fill:var(--accent); stroke:var(--accent);}
+  .edge{stroke:var(--line); stroke-width:1.4; fill:none;}
+  .edge-flow{stroke:var(--accent); stroke-width:1.6; fill:none; stroke-dasharray:4 5; opacity:0;
+    animation:flow 2.6s ease forwards; animation-delay:.3s;}
+  @keyframes flow{ to{opacity:1; stroke-dashoffset:-40;} }
+
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px; gap:16px; flex-wrap:wrap;}
+  .section-head h2{font-size:1.5rem;}
+  .section-note{color:var(--text-dim); font-size:.88rem; max-width:34ch;}
+
+  /* ---------- NOW ---------- */
+  .now-card{
+    display:flex; gap:16px; align-items:flex-start;
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; background:var(--panel);
+  }
+  .pulse{width:9px; height:9px; border-radius:50%; background:var(--accent2); margin-top:7px; flex-shrink:0;
+    box-shadow:0 0 0 0 var(--accent2); animation:pulse 2.4s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(95,163,154,.5);}
+    70%{box-shadow:0 0 0 8px rgba(95,163,154,0);}
+    100%{box-shadow:0 0 0 0 rgba(95,163,154,0);}
+  }
+  .now-card h3{font-size:1.05rem; margin-bottom:4px;}
+  .now-card p{margin:0; color:var(--text-dim); font-size:.95rem;}
+
+  /* ---------- TRACE (milestones) ---------- */
+  .trace{position:relative; padding-left:28px;}
+  .trace::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);
+  }
+  .trace-item{position:relative; padding-bottom:26px;}
+  .trace-item:last-child{padding-bottom:0;}
+  .trace-item::before{
+    content:""; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--panel-2); border:2px solid var(--accent);
+  }
+  .trace-item .stat{font-family:'Space Grotesk'; font-weight:600; color:var(--accent); font-size:1.05rem;}
+  .trace-item .detail{color:var(--text-dim); font-size:.92rem; margin-top:2px;}
+
+  /* ---------- PROJECT FILTER ---------- */
+  .filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px;}
+  .filter-btn{
+    font-family:'IBM Plex Mono'; font-size:.78rem; padding:7px 13px; border-radius:20px;
+    border:1px solid var(--line); background:transparent; color:var(--text-dim); cursor:pointer;
+    transition:all .15s ease;
+  }
+  .filter-btn:hover{border-color:var(--accent2); color:var(--text);}
+  .filter-btn.active{background:var(--accent-soft); border-color:var(--accent); color:var(--accent);}
+
+  .proj-list{position:relative; padding-left:28px;}
+  .proj-list::before{content:""; position:absolute; left:5px; top:8px; bottom:8px; width:1px; background:var(--line);}
+  .proj{position:relative; padding-bottom:30px;}
+  .proj:last-child{padding-bottom:0;}
+  .proj::before{
+    content:""; position:absolute; left:-28px; top:6px; width:11px; height:11px; border-radius:50%;
+    background:var(--panel-2); border:2px solid var(--line);
+  }
+  .proj.hidden{display:none;}
+  .proj-title{font-size:1.05rem; font-weight:600; font-family:'Space Grotesk'; margin-bottom:5px;}
+  .proj-title a{color:var(--text);}
+  .proj-title a:hover{color:var(--accent);}
+  .proj-desc{color:var(--text-dim); font-size:.94rem; max-width:62ch;}
+  .tags{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+  .tag{font-family:'IBM Plex Mono'; font-size:.72rem; color:var(--accent2); border:1px solid #5fa39a44; padding:2px 8px; border-radius:20px;}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px 32px;}
+  @media (max-width:600px){ .skill-grid{grid-template-columns:1fr;} }
+  .skill-group h3{font-size:.82rem; font-family:'IBM Plex Mono'; color:var(--accent2); font-weight:500; margin-bottom:8px;}
+  .skill-group p{margin:0; color:var(--text); font-size:.92rem;}
+
+  /* ---------- TIMELINE (education/training) ---------- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .t-item{position:relative; padding-bottom:24px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{content:""; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--panel-2); border:2px solid var(--accent2);}
+  .t-when{font-family:'IBM Plex Mono'; font-size:.76rem; color:var(--text-dim);}
+  .t-title{font-weight:600; margin-top:2px;}
+  .t-desc{color:var(--text-dim); font-size:.9rem; margin-top:3px;}
+
+  footer{padding:40px 0 60px; border-top:1px solid var(--line);}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;}
+  .foot-links{display:flex; gap:18px; font-size:.9rem;}
+  .foot-note{color:var(--text-dim); font-size:.8rem; margin-top:24px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">esraa<span>.</span>mohamed</div>
+    <div class="navlinks">
+      <a href="#now">Now</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:56px;">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow mono">AI &amp; Machine Learning Engineer</div>
+        <h1 class="name">Esraa Mohamed</h1>
+        <p class="role">Agentic systems · Applied ML/DL · MLOps</p>
+        <p class="lede">I design and ship autonomous agents, NLP &amp; audio models, and the backend
+          services they run on — from a LangGraph state graph with human-in-the-loop
+          approvals to a classical tracker built for a national AI competition.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="resume.pdf">Download resume</a>
+          <a class="btn" href="https://github.com/Esraa-Mohamed-8bits" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/esraa-mohamed-3573aa347" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="mailto:esraa.01281741131@gmail.com">Email</a>
+        </div>
+      </div>
+      <div class="graph-box">
+        <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path class="edge" d="M60,40 L150,40"/>
+          <path class="edge" d="M150,40 L150,110"/>
+          <path class="edge" d="M150,110 L70,150"/>
+          <path class="edge" d="M150,110 L230,150"/>
+          <path class="edge" d="M70,150 L150,195"/>
+          <path class="edge" d="M230,150 L150,195"/>
+          <path class="edge-flow" d="M60,40 L150,40 L150,110 L70,150 L150,195"/>
+          <circle class="node-circle active" cx="60" cy="40" r="8"/>
+          <text class="node-label active" x="60" y="22" text-anchor="middle">data</text>
+          <circle class="node-circle" cx="150" cy="40" r="8"/>
+          <text class="node-label" x="150" y="22" text-anchor="middle">learn</text>
+          <circle class="node-circle" cx="150" cy="110" r="8"/>
+          <text class="node-label" x="150" y="128" text-anchor="middle">decide</text>
+          <circle class="node-circle" cx="70" cy="150" r="8"/>
+          <text class="node-label" x="45" y="168" text-anchor="middle">agent</text>
+          <circle class="node-circle" cx="230" cy="150" r="8"/>
+          <text class="node-label" x="245" y="168" text-anchor="middle">review</text>
+          <circle class="node-circle" cx="150" cy="195" r="8"/>
+          <text class="node-label" x="150" y="215" text-anchor="middle">ship</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section id="now">
+    <div class="section-head"><h2>Now</h2></div>
+    <div class="now-card">
+      <span class="pulse" aria-hidden="true"></span>
+      <div>
+        <h3>Backend AI Engineering Intern — FlyRank</h3>
+        <p>Working through an AI Fluency + Backend AI Engineering track: CRUD APIs, database
+          integration, Docker, authentication, AI API integration, and background jobs —
+          this site is one of the deliverables.</p>
+      </div>
+    </div>
+
+    <div class="trace" style="margin-top:30px;">
+      <div class="trace-item">
+        <div class="stat">99 / 100</div>
+        <div class="detail">Final grade, Autonomous Agents training (FCDS, Alexandria University) — designed a human-in-the-loop state-graph agent for security-patch remediation.</div>
+      </div>
+      <div class="trace-item">
+        <div class="stat">Top 2 of 150</div>
+        <div class="detail">Ranked in a weekly ReAct-agent project (Student-At-Risk Intervention Agent) built with Gemini + LangChain.</div>
+      </div>
+      <div class="trace-item">
+        <div class="stat">59th nationally</div>
+        <div class="detail">MTC-AIC4 competition, Single-Object Aerial Tracking (Team AIEEEs) — a classical CSRT + frozen MobileNetV3-Small tracker.</div>
+      </div>
+      <div class="trace-item">
+        <div class="stat">3.84 / 4.0</div>
+        <div class="detail">CGPA at Alexandria University, Computer &amp; Data Science, AI/ML track.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <div class="section-note">A curated set. See the full list on GitHub or in my résumé.</div>
+    </div>
+
+    <div class="filters" role="tablist" aria-label="Filter projects by category">
+      <button class="filter-btn active" data-filter="all">all</button>
+      <button class="filter-btn" data-filter="agents">agentic ai &amp; mlops</button>
+      <button class="filter-btn" data-filter="nlp">nlp &amp; audio</button>
+      <button class="filter-btn" data-filter="ml">applied ml</button>
+    </div>
+
+    <div class="proj-list" id="projList">
+
+      <div class="proj" data-cat="agents">
+        <div class="proj-title"><a href="https://github.com/mhmdrizk-ds/Coderift-Technologies-B" target="_blank" rel="noopener">Security remediation state graph — Coderift Technologies</a></div>
+        <div class="proj-desc">Built a LangGraph state machine (scan_flag → propose_remediation → patch_pr) with a human-in-the-loop sign-off gate and an override/retry loop, wired into a live start/resume API. Final grade: 99/100.</div>
+        <div class="tags"><span class="tag">LangGraph</span><span class="tag">state graphs</span><span class="tag">HITL</span></div>
+      </div>
+
+      <div class="proj" data-cat="agents">
+        <div class="proj-title">Student-At-Risk Intervention Agent</div>
+        <div class="proj-desc">Built and compared three ReAct agent architectures (reactive, unconstrained, constrained) with Gemini and LangChain to flag at-risk students and recommend interventions. Ranked top 2 of 150 students.</div>
+        <div class="tags"><span class="tag">ReAct</span><span class="tag">Gemini</span><span class="tag">LangChain</span></div>
+      </div>
+
+      <div class="proj" data-cat="agents">
+        <div class="proj-title"><a href="https://github.com/meriamsamy/Sterling-Vance-Bank-B" target="_blank" rel="noopener">Sterling &amp; Vance Bank MCP server</a></div>
+        <div class="proj-desc">Debugged a wire-transfer risk-assessment MCP server: fixed a parameter-mismatch crash, a missing policy injection, and disconnected prompt templates.</div>
+        <div class="tags"><span class="tag">MCP</span><span class="tag">debugging</span></div>
+      </div>
+
+      <div class="proj" data-cat="nlp">
+        <div class="proj-title"><a href="https://github.com/Esraa-Mohamed-8bits/AI-Person-and-Language-Detection" target="_blank" rel="noopener">Multilingual speaker &amp; language ID</a></div>
+        <div class="proj-desc">Identifies who's speaking and which language (Arabic/English/French/German) from a short clip — MFCC, chroma, and spectral-contrast features with tuned RBF-SVMs and a leakage-safe augmentation pipeline. Shipped as Streamlit and Kivy apps.</div>
+        <div class="tags"><span class="tag">librosa</span><span class="tag">SVM</span><span class="tag">Streamlit</span></div>
+      </div>
+
+      <div class="proj" data-cat="nlp">
+        <div class="proj-title"><a href="https://github.com/Esraa-Mohamed-8bits/Audio_Processing_Project" target="_blank" rel="noopener">Voice command &amp; speaker recognition</a></div>
+        <div class="proj-desc">Team project recognizing ON/OFF voice commands and verifying the speaker's voiceprint, streamed live to an Arduino Uno with an LCD and LED for secure voice-controlled hardware.</div>
+        <div class="tags"><span class="tag">MFCC</span><span class="tag">Random Forest</span><span class="tag">Arduino</span></div>
+      </div>
+
+      <div class="proj" data-cat="nlp">
+        <div class="proj-title"><a href="https://github.com/Esraa-Mohamed-8bits/NLP-basic-" target="_blank" rel="noopener">NLP specialization track</a></div>
+        <div class="proj-desc">My current specialization — ongoing NLP coursework and projects. Recognized as best member for this track.</div>
+        <div class="tags"><span class="tag">NLP</span><span class="tag">active</span></div>
+      </div>
+
+      <div class="proj" data-cat="ml">
+        <div class="proj-title"><a href="https://github.com/Esraa-Mohamed-8bits/AIC" target="_blank" rel="noopener">MTC-AIC4 aerial tracking (Team AIEEEs)</a></div>
+        <div class="proj-desc">A purely classical single-object tracker — CSRT for frame-to-frame localization plus a frozen MobileNetV3-Small for appearance verification. No fine-tuning, under 25ms/frame. Placed 59th nationally.</div>
+        <div class="tags"><span class="tag">CSRT</span><span class="tag">MobileNetV3</span><span class="tag">OpenCV</span></div>
+      </div>
+
+      <div class="proj" data-cat="ml">
+        <div class="proj-title">GCI World 2026 — telecom churn prediction</div>
+        <div class="proj-desc">LightGBM with Optuna tuning on a ~100K-record telecom dataset, with engineered features (rev_per_min, usage_momentum) optimized for out-of-fold AUC. Final assessment for Matsuo-Iwasawa Lab's GCI World program, University of Tokyo.</div>
+        <div class="tags"><span class="tag">LightGBM</span><span class="tag">Optuna</span></div>
+      </div>
+
+      <div class="proj" data-cat="ml">
+        <div class="proj-title">Air quality prediction (graduation project)</div>
+        <div class="proj-desc">A Random Forest classifier on real Egyptian satellite data, using geospatial features to capture regional variation, deployed end-to-end as a Streamlit app.</div>
+        <div class="tags"><span class="tag">Random Forest</span><span class="tag">Streamlit</span></div>
+      </div>
+
+      <div class="proj" data-cat="ml">
+        <div class="proj-title">Medical imaging CNN suite</div>
+        <div class="proj-desc">Transfer-learning models (ResNet50, VGG16, DenseNet121) for Alzheimer's MRI, brain tumor, breast cancer, and pneumonia chest X-ray classification.</div>
+        <div class="tags"><span class="tag">TensorFlow</span><span class="tag">transfer learning</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head"><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-group">
+        <h3>agentic ai systems</h3>
+        <p>LangGraph, LangChain, MCP, ReAct, RAG, vector stores, multi-agent orchestration, state-graph design, Gemini API</p>
+      </div>
+      <div class="skill-group">
+        <h3>machine learning</h3>
+        <p>Scikit-learn, ensemble methods, SVM, Naive Bayes, KNN, LightGBM, Optuna</p>
+      </div>
+      <div class="skill-group">
+        <h3>deep learning · cv · audio</h3>
+        <p>TensorFlow, Keras, CNNs, ResNet50/VGG16/DenseNet121/MobileNetV3, OpenCV, librosa</p>
+      </div>
+      <div class="skill-group">
+        <h3>mlops &amp; backend</h3>
+        <p>Docker, Git/GitHub, Linux (RedHat administration), REST/CRUD APIs, authentication, background jobs, SQL</p>
+      </div>
+      <div class="skill-group">
+        <h3>data &amp; cloud</h3>
+        <p>AWS, SAS, Pandas, NumPy, EDA, feature engineering</p>
+      </div>
+      <div class="skill-group">
+        <h3>languages</h3>
+        <p>Python, Java, C++, R</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="section-head"><h2>Journey</h2></div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-when">2026 – Present</div>
+        <div class="t-title">Backend AI Engineering Intern, FlyRank</div>
+      </div>
+      <div class="t-item">
+        <div class="t-when">Jul – Aug 2026</div>
+        <div class="t-title">Autonomous Agents training, FCDS Alexandria University</div>
+        <div class="t-desc">60 hours · final grade 99/100</div>
+      </div>
+      <div class="t-item">
+        <div class="t-when">Apr 2026</div>
+        <div class="t-title">GCI World, Matsuo-Iwasawa Lab, University of Tokyo</div>
+      </div>
+      <div class="t-item">
+        <div class="t-when">2026</div>
+        <div class="t-title">NTI — Linux RedHat System Administration I &amp; II</div>
+      </div>
+      <div class="t-item">
+        <div class="t-when">2025</div>
+        <div class="t-title">Machine Learning Intern, IdeaSpace (Egypt Makes Electronics)</div>
+      </div>
+      <div class="t-item">
+        <div class="t-when">2024 – Present</div>
+        <div class="t-title">B.Sc. Computer &amp; Data Science, Alexandria University</div>
+        <div class="t-desc">CGPA 3.84/4.0 · AI &amp; Machine Learning track</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap" id="contact">
+  <div class="foot-grid">
+    <div>
+      <h2 style="font-size:1.3rem;">Let's talk.</h2>
+      <p style="color:var(--text-dim); margin-top:8px; max-width:40ch;">Open to AI engineering and MLOps roles, internships, and collaborations.</p>
+    </div>
+    <div class="foot-links">
+      <a href="mailto:esraa.01281741131@gmail.com">Email</a>
+      <a href="https://github.com/Esraa-Mohamed-8bits" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/esraa-mohamed-3573aa347" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://kaggle.com/esraamohamedis404" target="_blank" rel="noopener">Kaggle</a>
+    </div>
+  </div>
+  <div class="foot-note">Alexandria, Egypt · Built &amp; maintained by Esraa Mohamed</div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const projects = document.querySelectorAll('.proj');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      projects.forEach(p => {
+        p.classList.toggle('hidden', f !== 'all' && p.dataset.cat !== f);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
